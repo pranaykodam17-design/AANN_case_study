@@ -3,3 +3,11 @@ __pycache__/
 yolo*.pt
 runs/
 .DS_Store
+venv/
+.venv/
+__pycache__/
+*.pyc
+datasets/
+runs/detect/
+runs/predict/
+runs/predictions/

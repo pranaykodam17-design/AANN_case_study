@@ -4,6 +4,6 @@ names:
 - Manhole
 - Garbage
 nc: 4
-path: C:\Users\vemul\Downloads\Aditya_Pro\unified_dataset
+path: .
 train: images/train
 val: images/val

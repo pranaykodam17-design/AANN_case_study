@@ -1,0 +1,91 @@
+================================================================================
+YOLO26 VALIDATION & TESTING REPORT
+Garbage Detection Project - Baseline Evaluation
+Date: 2026-10-22
+================================================================================
+
+1. EVALUATION OBJECTIVE & CHECKPOINT
+--------------------------------------------------------------------------------
+- Evaluated Checkpoint: runs/garbage_detection/yolo26n_baseline/weights/best.pt
+- Checkpoint Size: 5.19 MB
+- Model: YOLO26n (Single-class 'garbage')
+- Evaluation Script: validate_yolo26_latest.py
+- Real Image Testing Script: test_yolo26_latest.py
+- Testing Device: CPU (AMD Ryzen AI 7 350 w/ Radeon 860M)
+
+2. VALIDATION SET METRICS (260 Images, 271 Instances)
+--------------------------------------------------------------------------------
+- Precision (B)      : 0.6511 (65.11%)
+- Recall (B)         : 0.5535 (55.35%)
+- mAP@50 (B)         : 0.5891 (58.91%)
+- mAP@50-95 (B)      : 0.2402 (24.02%)
+- Latency Breakdown:
+  * Preprocess Speed : 1.74 ms
+  * Inference Speed  : 65.85 ms
+  * Postprocess Speed: 2.20 ms
+  * Total Frame Time : 69.79 ms per image (14.33 FPS on CPU)
+- Per-Class Analysis:
+  * Class 0 ('garbage'): mAP50-95 = 0.2402, mAP50 = 0.5891
+- Artifact Location  : runs/garbage_detection/yolo26n_eval_val/
+- Confusion Matrix   : runs/garbage_detection/yolo26n_eval_val/confusion_matrix.png
+
+3. HELD-OUT TEST SET METRICS (258 Images, 273 Instances)
+--------------------------------------------------------------------------------
+*Note: Evaluated strictly after training completion for unbiased generalization check.*
+- Precision (B)      : 0.6366 (63.66%)
+- Recall (B)         : 0.5238 (52.38%)
+- mAP@50 (B)         : 0.5791 (57.91%)
+- mAP@50-95 (B)      : 0.2388 (23.88%)
+- Latency Breakdown:
+  * Preprocess Speed : 1.77 ms
+  * Inference Speed  : 62.37 ms
+  * Postprocess Speed: 2.22 ms
+  * Total Frame Time : 66.36 ms per image (15.07 FPS on CPU)
+- Per-Class Analysis:
+  * Class 0 ('garbage'): mAP50-95 = 0.2388, mAP50 = 0.5791
+- Artifact Location  : runs/garbage_detection/yolo26n_eval_test/
+- Confusion Matrix   : runs/garbage_detection/yolo26n_eval_test/confusion_matrix.png
+
+4. REAL-IMAGE INFERENCE TESTS
+--------------------------------------------------------------------------------
+Annotated visual predictions saved to: outputs/predictions/
+Confidence Threshold: 0.20
+
+Test Case 1: Standard Test Image 1
+- File: datasets/garbage_yolo26/test/images/000144244W_jpg.rf.d1dc6442492ffbc7bcce5f0412bfea66.jpg
+- Result: 1 object detected
+- Detection: Class 'garbage' | Confidence: 0.2338 | Box [188.2, 304.6, 640.0, 640.0]
+
+Test Case 2: Standard Test Image 2
+- File: datasets/garbage_yolo26/test/images/02f330f2-9439-11e5-982d-40f2e96c8ad8_jpg.rf.af9f304e5a78fc6f84d268edef376fe3.jpg
+- Result: 1 object detected
+- Detection: Class 'garbage' | Confidence: 0.2029 | Box [194.0, 46.9, 640.0, 640.0]
+
+Test Case 3: Difficult Cluttered Scene (Multiple items)
+- File: datasets/garbage_yolo26/test/images/3adba2c8-6799-11e5-8dc4-40f2e96c8ad8_jpg.rf.47a0aeb81277b3f2424793ac07bf702b.jpg
+- Result: 2 objects detected
+- Detection 1: Class 'garbage' | Confidence: 0.3063 | Box [27.9, 382.0, 438.9, 640.0]
+- Detection 2: Class 'garbage' | Confidence: 0.2614 | Box [0.0, 384.8, 514.4, 640.0]
+
+Test Case 4: Difficult Cluttered Scene 2
+- File: datasets/garbage_yolo26/test/images/a210c932-679e-11e5-b0d3-40f2e96c8ad8_jpg.rf.67b3ba526a4be2988327eaa291455e56.jpg
+- Result: 1 object detected
+- Detection: Class 'garbage' | Confidence: 0.2149 | Box [20.9, 140.3, 553.0, 640.0]
+
+Test Case 5: Negative Control (Clean Scene / No Garbage)
+- File: datasets/garbage_yolo26/test/images/0ed6fe62-9439-11e5-982d-40f2e96c8ad8_jpg.rf.632814891b404ce212650bdc302e8852.jpg
+- Result: 0 objects detected (True Negative - No false alarms)
+
+Test Case 6: Workspace Root Test Image
+- File: test.jpg
+- Result: 1 object detected
+- Detection: Class 'garbage' | Confidence: 0.4349 | Box [0.0, 0.0, 481.3, 404.0]
+
+5. CHECKPOINT VERIFICATION & INTEGRITY
+--------------------------------------------------------------------------------
+- Newly Created YOLO26 Best Weights:
+  C:\Users\NANI\OneDrive\Desktop\garbage_detection\Garbage-detection\runs\garbage_detection\yolo26n_baseline\weights\best.pt (5.19 MB)
+- Original Checkpoint Status:
+  C:\Users\NANI\OneDrive\Desktop\garbage_detection\Garbage-detection\best.pt (49.6 MB, 4 classes)
+  Verification: Completely intact, untouched, and unedited.
+================================================================================

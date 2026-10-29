@@ -1,0 +1,82 @@
+================================================================================
+YOLO26 TRAINING REPORT
+Garbage Detection Project - Baseline Experiment
+Date: 2026-10-22
+================================================================================
+
+1. EXPERIMENT OVERVIEW
+--------------------------------------------------------------------------------
+- Model Architecture: YOLO26n (Nano, Official Ultralytics Release)
+- Base Weights: yolo26n.pt (Pretrained on COCO)
+- Script Used: train_yolo26_latest.py
+- Task: Object Detection (single-class: 'garbage')
+- Project Output Directory: runs/garbage_detection/yolo26n_baseline/
+- Isolated Run: YES (Isolated from root directory and previous experiments)
+- Root best.pt Status: Preserved untouched (49.6 MB, 4 classes)
+
+2. HARDWARE & ENVIRONMENT
+--------------------------------------------------------------------------------
+- Processor: AMD Ryzen AI 7 350 w/ Radeon 860M (16 logical cores)
+- PyTorch Version: 2.14.1+cpu
+- Execution Mode: CPU
+- Memory: 23.29 GB Total RAM
+- Ultralytics Engine: 8.4.183
+
+3. DATASET & HYPERPARAMETERS
+--------------------------------------------------------------------------------
+- Dataset Config: datasets/garbage_yolo26/data.yaml
+- Dataset Distribution:
+  * Training Images: 3,669 images (459 batches at batch size 8)
+  * Validation Images: 260 images
+  * Test Images: 258 images (reserved for final evaluation)
+  * Target Classes: 1 ('garbage')
+- Training Parameters:
+  * Epochs: 1 full epoch (over all 3,669 training images)
+  * Batch Size: 8
+  * Image Resolution: 640x640
+  * Optimizer: AdamW (lr=0.002, momentum=0.9)
+  * Weight Decay: 0.0005
+  * Dataloader Workers: 2
+  * Data Augmentation: Mosaic closing enabled
+
+4. TRAINING EXECUTION & CONVERGENCE
+--------------------------------------------------------------------------------
+- Total Training Wall-Clock Time: 1649.38 seconds (~27.49 minutes / 0.458 hours)
+- Final Training Losses:
+  * Train Box Loss: 1.70462
+  * Train Class Loss: 3.81707 (rapid convergence from initial 28.18)
+  * Train L1 Loss: 0.05975
+- Validation Losses at Epoch Completion:
+  * Val Box Loss: 2.03772
+  * Val Class Loss: 2.13884
+  * Val L1 Loss: 0.07846
+- Epoch 1 Post-Training Validation Metrics:
+  * Precision: 0.64898 (64.90%)
+  * Recall: 0.55351 (55.35%)
+  * mAP@50: 0.59015 (59.02%)
+  * mAP@50-95: 0.24134 (24.13%)
+
+5. SAVED ARTIFACTS & CHECKPOINTS
+--------------------------------------------------------------------------------
+- Best Model Checkpoint:
+  runs/garbage_detection/yolo26n_baseline/weights/best.pt (5.19 MB / 5,441,849 bytes)
+- Last Model Checkpoint:
+  runs/garbage_detection/yolo26n_baseline/weights/last.pt (5.19 MB / 5,441,849 bytes)
+- Full Metric Log:
+  runs/garbage_detection/yolo26n_baseline/results.csv
+- Loss and Metric Plots:
+  runs/garbage_detection/yolo26n_baseline/results.png
+  runs/garbage_detection/yolo26n_baseline/BoxPR_curve.png
+  runs/garbage_detection/yolo26n_baseline/BoxF1_curve.png
+  runs/garbage_detection/yolo26n_baseline/confusion_matrix.png
+- Batch Visualizations:
+  runs/garbage_detection/yolo26n_baseline/train_batch0.jpg
+  runs/garbage_detection/yolo26n_baseline/val_batch0_pred.jpg
+
+6. OBSERVATIONS & LIMITATIONS
+--------------------------------------------------------------------------------
+- YOLO26n successfully adapted its detection head to single-class garbage detection.
+- Fast convergence within 1 epoch on 3,669 samples, demonstrating strong pretrained features.
+- Training speed on 16 CPU cores averaged ~3.6s per batch of 8 images (~0.45s per image).
+- Running extended epochs (e.g., 50-100 epochs) is recommended on a CUDA-enabled GPU for maximum mAP50-95 gains.
+================================================================================
